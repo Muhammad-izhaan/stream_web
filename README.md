@@ -1,1 +1,1 @@
-This is demo livestream HTML,css and Js (combined) code for a single event stream. You can add your own assets. This code includes a demo live viewers counter configured using javaScript. Also JW player (with KEY) is also integrated in this code.  Happy code 😊
+This is demo livestream HTML,css and Js (combined) code for a single event stream. You can add your own assets. This code includes a demo live viewers counter configured using javaScript. Also JW player (with KEY) is integrated in this code.  Happy code 😊
