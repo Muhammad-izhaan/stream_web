@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Default light mode background color */
+            color: #000; /* Default text color */
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+        .left-image {
+            display: none; /* Hide the left image */
+        }
+        .right-image {
+            width: 150px;
+            height: 150px;
+            /* Example image: replace with your actual image */
+            background-image: url('http://izhaanhosts.rf.gd/Logo.png');
+            background-size: cover;
+        }
+        .jw-player {
+            /* Add your JW Player code here */
+        }
+        .social-icons {
+            text-align: center; /* Align social icons to the center */
+            margin-top: 20px; /* Add some space between JW Player and social icons */
+        }
+        .social-icons a {
+            margin-right: 10px;
+            color: #333;
+            text-decoration: none;
+        }
+        .follow-button, .lights-button {
+            display: inline-block;
+            width: 200px;
+            margin: 0 auto;
+            padding: 10px;
+            background-color: #0074c2;
+            color: #fff;
+            text-align: center;
+            border-radius: 20px;
+            text-decoration: none;
+            margin-bottom: 20px; /* Add some space between buttons */
+        }
+        .follow-button:hover, .lights-button:hover {
+            background-color: #005a8e;
+        }
+        /* Additional CSS for dark mode */
+        body.black-mode {
+            color: #fff; /* Change text color to white */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-image"></div>
+        <div class="right-image"></div>
+        <!-- Add the element to display current viewers count -->
+        <div id="viewer-count">Viewers 👁️‍🗨️: <span id="count">11</span></div>
+    </div>
+    <div class="jw-player">
+        <title>Player</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="MR.NITROX">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <script type="text/javascript" src="https://content.jwplatform.com/libraries/IDzF9Zmk.js"></script>
+        <script type="text/javascript">jwplayer.key = 'Khpp2dHxlBJHC8MCmLnBuV2jK/DwDnJMniwF6EO9HC/riJ712ZmbHg==';</script>
+        <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css">
+        <script src="https://cdn.plyr.io/3.6.3/plyr.js"></script>
+        <script type="text/javascript" src="https://content.jwplatform.com/libraries/IDzF9Zmk.js"></script>
+        <script type="text/javascript">jwplayer.key = 'Khpp2dHxlBJHC8MCmLnBuV2jK/DwDnJMniwF6EO9HC/riJ712ZmbHg==';</script>
+        <style>
+            /* Your JW Player styles here */
+        </style>
+        <video id="myElement"></video>
+        <script type="text/JavaScript">
+            jwplayer("myElement").setup({ 
+                "playlist": [{
+                   "sources": [
+                {
+                  "default": false,
+                  "type": "hls",
+                  "file": "https://dai.google.com/linear/hls/event/C9x63VYXTNy1rL98-irN0g/master.m3u8",
+                  "label": "0"
+                }
+              ],
+                }],
+             "primary": "html5",
+              "hlshtml": true,
+              "autostart": true,
+            });
+        </script>
+    </div>
+    <div class="social-icons">
+        <a href="#" class="lights-button" onclick="toggleLights()">Turn Off Lights</a>
+        <a href="https://twitter.com/izhaannn" target="_blank" rel="noopener noreferrer" class="follow-button">Follow me on Twitter</a>
+    </div>
+    <script>
+  // Function to update the viewer count
+        function updateViewerCount() {
+            // Get the current count
+            var current
+            var currentCount = parseInt(document.getElementById("count").textContent);
+            // Generate a random increment or decrement value between -1 and 1
+            var increment = Math.floor(Math.random() * 3) - 1;
+            // Add the increment to the current count
+            var newCount = currentCount + increment;
+            // Ensure the count stays between 10 and 25
+            newCount = Math.max(10, Math.min(newCount, 25));
+            // Update the count gradually
+            if (newCount > currentCount) {
+                // Increment slowly
+                for (var i = currentCount + 1; i <= newCount; i++) {
+                    setTimeout(function(current) {
+                        return function() {
+                            document.getElementById("count").textContent = current;
+                        };
+                    }(i), (i - currentCount) * 500);
+                }
+            } else if (newCount < currentCount) {
+                // Decrement slowly
+                for (var i = currentCount - 1; i >= newCount; i--) {
+                    setTimeout(function(current) {
+                        return function() {
+                            document.getElementById("count").textContent = current;
+                        };
+                    }(i), (currentCount - i) * 500);
+                }
+            }
+        }
+
+        // Update the count initially
+        updateViewerCount();
+
+        // Update the count every 17 seconds
+        setInterval(updateViewerCount, 17000); // 17 seconds in milliseconds
+        
+            
+            
+            
+        // Function to toggle lights
+        function toggleLights() {
+            var body = document.body;
+            if (body.style.backgroundColor === "black") {
+                body.style.backgroundColor = "#f0f0f0"; // Light mode background color
+                body.classList.remove("black-mode"); // Remove black mode class
+                document.querySelector(".lights-button").innerText = "Turn Off Lights";
+            } else {
+                body.style.backgroundColor = "black"; // Dark mode background color
+                body.classList.add("black-mode"); // Add black mode class
+                document.querySelector(".lights-button").innerText = "Turn On Lights";
+            }
+        }
+    </script>
+</body>
+</html>
